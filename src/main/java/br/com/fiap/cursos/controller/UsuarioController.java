@@ -1,6 +1,7 @@
 package br.com.fiap.cursos.controller;
 
 import br.com.fiap.cursos.dto.UseForm;
+import br.com.fiap.cursos.repository.RoleRepository;
 import br.com.fiap.cursos.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
