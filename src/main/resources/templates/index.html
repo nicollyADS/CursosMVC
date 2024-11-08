@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="conteudo" class="container mt-5">
+  <h1 class="text-center mb-4">Bem-vindo ao Sistema de Gestão de Cursos</h1>
+
+  <p class="lead text-center mb-4">Essa é a página inicial do sistema de gestão de alunos. Aqui você pode cadastrar novos alunos,
+    visualizar a lista de alunos cadastrados e acessar outras funcionalidades.</p>
+
+  <div>
+    <h3>O que você pode fazer?</h3>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <a th:href="@{/aluno/cadastrar}" class="btn btn-primary btn-block">Cadastrar um novo aluno</a>
+      </li>
+      <li class="list-group-item">
+        <a th:href="@{/aluno/listar}" class="btn btn-secondary btn-block">Visualizar a lista de alunos</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>Editar Aluno</title>
+</head>
+<body>
+<div layout:fragment="conteudo">
+    <h1>Editar Aluno</h1>
+    <form th:action="@{/aluno/editar}" th:object="${aluno}" method="post">
+        <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+            <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        </div>
+        <input th:field="*{id}" type="hidden"/>
+
+        <div class="mb-3">
+            <label class="form-label">Nome</label>
+            <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Informe o nome" required>
+            <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input class="form-control" th:field="*{email}" type="email" id="email" placeholder="Informe o e-mail" required>
+            <p th:if="${#fields.hasErrors('email')}" class="text text-danger" th:errors="*{email}"></p>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Curso</label>
+            <input class="form-control" th:field="*{curso}" type="text" id="curso" placeholder="Informe o curso" required>
+            <p th:if="${#fields.hasErrors('curso')}" class="text text-danger" th:errors="*{curso}"></p>
+        </div>
+
+        <button class="btn btn-success">Salvar</button>
+
+        <br>
+        <p th:text="${mensagem}"></p>
+    </form>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Matrículas</title>
+    <!-- Adicionando o Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div layout:fragment="conteudo" class="container mt-5">
+    <h1 class="mb-4">Lista de Matrículas</h1>
+
+    <a th:href="@{/matricula/cadastrar}" class="btn btn-success mb-3">Cadastrar Nova Matrícula</a>
+
+    <table class="table table-bordered">
+        <thead class="table-light">
+        <tr>
+            <th>ID</th>
+            <th>Aluno</th>
+            <th>Curso</th>
+            <th>Status</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="matricula : ${matriculas}">
+            <td th:text="${matricula.id}"></td>
+            <td th:text="${matricula.aluno.nome}"></td>
+            <td th:text="${matricula.curso.nome}"></td>
+            <td th:text="${matricula.status.descricao}"></td>
+            <td>
+                <a th:href="@{'/matricula/detalhes/' + ${matricula.id}}" class="btn btn-info btn-sm">Detalhes</a>
+                <a th:href="@{'/matricula/editar/' + ${matricula.id}}" class="btn btn-warning btn-sm">Editar</a>
+                <form th:action="@{/matricula/remover}" method="post" style="display:inline;">
+                    <input type="hidden" th:value="${matricula.id}" name="id"/>
+                    <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p th:if="${mensagem}" th:text="${mensagem}" class="text-success"></p>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

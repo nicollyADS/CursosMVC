@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Editar Curso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div layout:fragment="conteudo" class="container mt-5">
+  <h1 class="mb-4">Editar Curso</h1>
+
+  <p th:if="${erro}" th:text="${erro}" class="text-danger"></p>
+
+  <form th:action="@{'/curso/editar/' + ${curso.id}}" th:object="${curso}" method="post">
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome:</label>
+      <input type="text" id="nome" th:field="*{nome}" class="form-control" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="descricao" class="form-label">Descrição:</label>
+      <input type="text" id="descricao" th:field="*{descricao}" class="form-control" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="dataInicio" class="form-label">Data de Início:</label>
+      <input type="date" id="dataInicio" th:field="*{dataInicio}" class="form-control" required/>
+    </div>
+
+    <div class="mb-3">
+      <label for="cargaHoraria" class="form-label">Carga Horária:</label>
+      <input type="number" id="cargaHoraria" th:field="*{cargaHoraria}" class="form-control" required/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+  </form>
+
+  <a th:href="@{/curso/listar}" class="btn btn-secondary mt-3">Voltar à Lista</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
