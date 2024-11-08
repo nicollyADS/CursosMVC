@@ -16,16 +16,19 @@
         <div class="mb-3">
             <label for="nome" class="form-label">Nome:</label>
             <input type="text" id="nome" th:field="*{nome}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('nome')}" class="text-danger" th:errors="*{nome}"></div>
         </div>
 
         <div class="mb-3">
             <label for="email" class="form-label">Email:</label>
             <input type="email" id="email" th:field="*{email}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('email')}" class="text-danger" th:errors="*{email}"></div>
         </div>
 
         <div class="mb-3">
             <label for="curso" class="form-label">Curso:</label>
             <input type="text" id="curso" th:field="*{curso}" class="form-control" required/>
+            <div th:if="${#fields.hasErrors('curso')}" class="text-danger" th:errors="*{curso}"></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Cadastrar</button>

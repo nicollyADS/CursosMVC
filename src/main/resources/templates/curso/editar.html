@@ -1,47 +1,53 @@
 <!DOCTYPE html>
-<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
+  <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
   <meta charset="UTF-8">
   <title>Editar Curso</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
 <div layout:fragment="conteudo" class="container mt-5">
-  <h1 class="mb-4">Editar Curso</h1>
-
-  <p th:if="${erro}" th:text="${erro}" class="text-danger"></p>
-
+  <h1>Editar Curso</h1>
   <form th:action="@{'/curso/editar/' + ${curso.id}}" th:object="${curso}" method="post">
+    <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
+      <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+    </div>
+
+    <input th:field="*{id}" type="hidden"/>
+
     <div class="mb-3">
-      <label for="nome" class="form-label">Nome:</label>
-      <input type="text" id="nome" th:field="*{nome}" class="form-control" required/>
+      <label for="nome" class="form-label">Nome</label>
+      <input class="form-control" th:field="*{nome}" type="text" id="nome" placeholder="Informe o nome" required/>
+      <p th:if="${#fields.hasErrors('nome')}" class="text text-danger" th:errors="*{nome}"></p>
     </div>
 
     <div class="mb-3">
-      <label for="descricao" class="form-label">Descrição:</label>
-      <input type="text" id="descricao" th:field="*{descricao}" class="form-control" required/>
+      <label for="descricao" class="form-label">Descrição</label>
+      <input class="form-control" th:field="*{descricao}" type="text" id="descricao" placeholder="Informe a descrição" required/>
+      <p th:if="${#fields.hasErrors('descricao')}" class="text text-danger" th:errors="*{descricao}"></p>
     </div>
 
     <div class="mb-3">
-      <label for="dataInicio" class="form-label">Data de Início:</label>
-      <input type="date" id="dataInicio" th:field="*{dataInicio}" class="form-control" required/>
+      <label for="dataInicio" class="form-label">Data de Início</label>
+      <input class="form-control" th:field="*{dataInicio}" type="date" id="dataInicio" required/>
+      <p th:if="${#fields.hasErrors('dataInicio')}" class="text text-danger" th:errors="*{dataInicio}"></p>
     </div>
 
     <div class="mb-3">
-      <label for="cargaHoraria" class="form-label">Carga Horária:</label>
-      <input type="number" id="cargaHoraria" th:field="*{cargaHoraria}" class="form-control" required/>
+      <label for="cargaHoraria" class="form-label">Carga Horária</label>
+      <input class="form-control" th:field="*{cargaHoraria}" type="number" id="cargaHoraria" placeholder="Informe a carga horária" required/>
+      <p th:if="${#fields.hasErrors('cargaHoraria')}" class="text text-danger" th:errors="*{cargaHoraria}"></p>
     </div>
 
-    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+    <button class="btn btn-success">Salvar Alterações</button>
+
+    <br>
+    <p th:text="${mensagem}" class="alert alert-info mt-3"></p>
   </form>
-
-  <a th:href="@{/curso/listar}" class="btn btn-secondary mt-3">Voltar à Lista</a>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 </body>
 </html>

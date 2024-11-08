@@ -18,6 +18,7 @@
             <select id="aluno" th:field="*{aluno.id}" class="form-select">
                 <option th:each="aluno : ${alunos}" th:value="${aluno.id}" th:text="${aluno.nome}"></option>
             </select>
+            <div th:if="${#fields.hasErrors('aluno.id')}" class="text-danger" th:errors="*{aluno.id}"></div>
         </div>
 
         <div class="mb-3">
@@ -25,6 +26,7 @@
             <select id="curso" th:field="*{curso.id}" class="form-select">
                 <option th:each="curso : ${cursos}" th:value="${curso.id}" th:text="${curso.nome}"></option>
             </select>
+            <div th:if="${#fields.hasErrors('curso.id')}" class="text-danger" th:errors="*{curso.id}"></div>
         </div>
 
         <div class="mb-3">
@@ -32,6 +34,7 @@
             <select id="status" th:field="*{status}" class="form-select">
                 <option th:each="status : ${statusOptions}" th:value="${status}" th:text="${status.descricao}"></option>
             </select>
+            <div th:if="${#fields.hasErrors('status')}" class="text-danger" th:errors="*{status}"></div>
         </div>
 
         <button type="submit" class="btn btn-primary">Cadastrar</button>

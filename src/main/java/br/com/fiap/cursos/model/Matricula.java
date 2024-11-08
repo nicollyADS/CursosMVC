@@ -1,6 +1,7 @@
 package br.com.fiap.cursos.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,18 +23,22 @@ public class Matricula {
     @Column(name = "id_matricula")
     private Long id;
 
+    @NotNull(message = "O aluno é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "aluno_id", nullable = false)
     private Aluno aluno;
 
+    @NotNull(message = "O curso é obrigatório.")
     @ManyToOne
     @JoinColumn(name = "curso_id", nullable = false)
     private Curso curso;
 
+    @NotNull(message = "A data de matrícula é obrigatória.")
     @CreatedDate
     @Column(name = "dt_matricula", nullable = false)
     private LocalDate dataMatricula;
 
+    @NotNull(message = "O status da matrícula é obrigatório.")
     @Enumerated(EnumType.STRING)
     @Column(name = "st_matricula", nullable = false)
     private Status status;
