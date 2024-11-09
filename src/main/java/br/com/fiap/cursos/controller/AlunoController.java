@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.ui.Model;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Controller
 @RequestMapping("aluno")
@@ -85,4 +87,14 @@ public class AlunoController {
         redirectAttributes.addFlashAttribute("mensagem", "aluno removido com sucesso");
         return "redirect:/aluno/listar";
     }
+
+
+    @GetMapping("pesquisar")
+    public String pesquisarAlunos(@RequestParam String query, Model model) {
+        List<Aluno> alunos = alunoRepository.findByNomeContainingIgnoreCase(query);
+        model.addAttribute("alunos", alunos);
+        return "aluno/pesquisar";
+    }
+
+
 }

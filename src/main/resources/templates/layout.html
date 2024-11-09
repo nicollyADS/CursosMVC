@@ -26,8 +26,26 @@
                 <li class="nav-item"><a class="nav-link text-white" th:href="@{/matricula/cadastrar}">Cadastrar Matrícula</a></li>
             </ul>
         </nav>
+
+        <div class="row">
+            <div class="col-md-5 mb-3">
+                <form class="d-flex" th:action="@{/aluno/pesquisar}" method="get">
+                    <!-- Campo de pesquisa com largura ajustada -->
+                    <input class="form-control me-2 w-50" type="search" name="query" placeholder="Nome do aluno" aria-label="Search">
+                    <!-- Botão de busca com largura ajustada -->
+                    <button class="btn btn-secondary w-auto" type="submit">Buscar Aluno</button>
+                </form>
+            </div>
+            <div class="col-md-5 mb-3">
+                <form class="d-flex" th:action="@{/curso/pesquisar}" method="get">
+                    <input class="form-control me-2 w-50" type="search" name="query" placeholder="Nome do curso" aria-label="Search">
+                    <button class="btn btn-secondary w-auto" type="submit">Buscar Curso</button>
+                </form>
+            </div>
+        </div>
     </div>
 </header>
+
 
 <main class="container mt-4">
     <div layout:fragment="conteudo"></div>

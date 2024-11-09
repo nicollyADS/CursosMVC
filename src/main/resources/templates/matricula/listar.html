@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org"
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Matrículas</title>
-    <!-- Adicionando o Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -15,8 +14,10 @@
 
     <a th:href="@{/matricula/cadastrar}" class="btn btn-success mb-3">Cadastrar Nova Matrícula</a>
 
+    <p th:if="${mensagem}" th:text="${mensagem}" class="alert alert-info"></p>
+
     <table class="table table-bordered">
-        <thead class="table-light">
+        <thead>
         <tr>
             <th>ID</th>
             <th>Aluno</th>
@@ -32,8 +33,8 @@
             <td th:text="${matricula.curso.nome}"></td>
             <td th:text="${matricula.status.descricao}"></td>
             <td>
-                <a th:href="@{'/matricula/detalhes/' + ${matricula.id}}" class="btn btn-info btn-sm">Detalhes</a>
-                <a th:href="@{'/matricula/editar/' + ${matricula.id}}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{'/matricula/detalhes/' + ${matricula.id}}" class="btn btn-info btn-sm">Detalhes</a> |
+                <a th:href="@{'/matricula/editar/' + ${matricula.id}}" class="btn btn-warning btn-sm">Editar</a> |
                 <form th:action="@{/matricula/remover}" method="post" style="display:inline;">
                     <input type="hidden" th:value="${matricula.id}" name="id"/>
                     <button type="submit" class="btn btn-danger btn-sm">Remover</button>
@@ -43,8 +44,8 @@
         </tbody>
     </table>
 
-    <p th:if="${mensagem}" th:text="${mensagem}" class="text-success"></p>
 </div>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

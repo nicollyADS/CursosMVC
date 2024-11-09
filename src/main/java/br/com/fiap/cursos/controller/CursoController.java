@@ -1,5 +1,6 @@
 package br.com.fiap.cursos.controller;
 
+import br.com.fiap.cursos.model.Aluno;
 import br.com.fiap.cursos.model.Curso;
 import br.com.fiap.cursos.repository.CursoRepository;
 import jakarta.transaction.Transactional;
@@ -8,12 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -21,6 +20,8 @@ import java.util.Optional;
 public class CursoController {
     @Autowired
     private CursoRepository cursoRepository;
+
+
 
 
     @GetMapping("cadastrar")
@@ -86,5 +87,12 @@ public class CursoController {
         cursoRepository.deleteById(id);
         redirectAttributes.addFlashAttribute("mensagem", "curso removido com sucesso");
         return "redirect:/curso/listar";
+    }
+
+    @GetMapping("pesquisar")
+    public String pesquisarCursos(@RequestParam String query, Model model) {
+        List<Curso> cursos = cursoRepository.findByNomeContainingIgnoreCase(query);
+        model.addAttribute("cursos", cursos);
+        return "curso/pesquisar";
     }
 }

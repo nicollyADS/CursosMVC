@@ -13,6 +13,7 @@
         <div class="alert alert-danger" th:if="${#fields.hasErrors('*')}">
             <p th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
         </div>
+
         <input th:field="*{id}" type="hidden"/>
 
         <div class="mb-3">

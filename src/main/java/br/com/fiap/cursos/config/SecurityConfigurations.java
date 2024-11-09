@@ -22,7 +22,8 @@ public class SecurityConfigurations {
         http.authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/public/**", "/login", "/webjars/**").permitAll()
                         .requestMatchers("/admin/**", "/register", "/matricula", "/curso", "/aluno").hasRole("ADMIN")
-                        .requestMatchers("/user/**", "/matricula").hasRole("USER")
+                        .requestMatchers("/user/**","curso/listar").hasRole("USER")
+
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

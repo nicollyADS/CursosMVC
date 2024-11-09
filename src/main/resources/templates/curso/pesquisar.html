@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Pesquisa de Cursos por Aluno</title>
+    <link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+<div layout:fragment="conteudo" class="container mt-4">
+    <h1>Pesquisa de Cursos por Aluno</h1>
+    <form th:action="@{/curso/pesquisar}" method="get" class="d-flex">
+        <input class="form-control me-2" type="search" name="alunoId" placeholder="Buscar cursos do aluno" aria-label="Search">
+        <button class="btn btn-success" type="submit">Pesquisar</button>
+    </form>
+
+    <table class="table mt-4">
+        <thead>
+        <tr>
+            <th>Nome do Curso</th>
+            <th>Descrição</th>
+            <th>Data de Início</th>
+            <th>Carga Horária</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="curso : ${cursos}">
+            <td th:text="${curso.nome}"></td>
+            <td th:text="${curso.descricao}"></td>
+            <td th:text="${curso.dataInicio}"></td>
+            <td th:text="${curso.cargaHoraria}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.bundle.min.js}"></script>
+</body>
+</html>
